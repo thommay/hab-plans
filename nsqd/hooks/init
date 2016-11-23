@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+set -x
+
+mkdir -p {{cfg.data-path}}
+chown -R hab: {{cfg.data-path}}

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+set -x
+
+debug() {
+  if [ ! -z "$DEBUG" ]; then
+    echo "$*"
+  fi
+}
+
+cat {{pkg.svc_config_path}}/config.sh
+debug "Sourcing config from {{pkg.svc_config_path}}/config.sh"
+. {{pkg.svc_config_path}}/config.sh
+
+echo $NSQ_ARGS
+exec 2>&1
+nsqd $NSQ_ARGS
